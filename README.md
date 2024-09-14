@@ -1,0 +1,2 @@
+# grafana
+Notes on grafana
