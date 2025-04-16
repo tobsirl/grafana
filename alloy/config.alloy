@@ -9,6 +9,9 @@ prometheus.remote_write "grafanacloud" {
   }
 }
 
+prometheus.exporter.statsd "feed" {
+}
+
 prometheus.scrape "prometheus" {
   targets = [{
     __address__ = "localhost:9090",
