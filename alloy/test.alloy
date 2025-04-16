@@ -1,0 +1,30 @@
+prometheus.scrape "node_exporter" {
+	targets = [{
+		__address__ = "localhost:9100",
+	}]
+	forward_to = [prometheus.remote_write.default.receiver]
+	job_name   = "node_exporter"
+}
+
+prometheus.scrape "statsd_exporter" {
+	targets = [{
+		__address__ = "localhost:9102",
+	}]
+	forward_to = [prometheus.remote_write.default.receiver]
+	job_name   = "statsd_exporter"
+}
+
+prometheus.remote_write "default" {
+	endpoint {
+		url = "https://prometheus-blocks-prod-us-central1.grafana.net/api/prom/push"
+
+		basic_auth {
+			username = "23413243"
+			password = "394534pjiprtoiwjeprdkpgodjpgoi"
+		}
+
+		queue_config { }
+
+		metadata_config { }
+	}
+}
